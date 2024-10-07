@@ -4,6 +4,8 @@ import Image from "next/image";
 import { ArrowRight, Check, Star } from "lucide-react";
 import Link from "next/link";
 import { Icons } from "@/components/Icons";
+import { Reviews } from "@/components/Reviews";
+import { buttonVariants } from "@/components/ui/button";
 
 
 export default function Home() {
@@ -191,6 +193,9 @@ export default function Home() {
             </div>
           </div>
         </MaxWidthWrapper>
+        <div className="pt-16">
+          <Reviews />
+        </div>
       </section>
       <section>
         <MaxWidthWrapper className="py-24">
@@ -243,7 +248,7 @@ export default function Home() {
             </li>
 
             <div className="flex justify-center">
-              {/* <Link
+              <Link
                 className={buttonVariants({
                   size: "lg",
                   className: "mx-auto mt-8",
@@ -251,7 +256,7 @@ export default function Home() {
                 href="/configure/upload"
               >
                 Create your case now <ArrowRight className="h-4 w-4 ml-1.5" />
-              </Link> */}
+              </Link>
             </div>
           </ul>
         </MaxWidthWrapper>
