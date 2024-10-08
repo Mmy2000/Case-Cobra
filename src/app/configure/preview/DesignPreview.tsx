@@ -9,10 +9,12 @@ import { useMutation } from "@tanstack/react-query";
 import { ArrowRight, Check } from "lucide-react";
 import { useEffect, useState } from "react";
 import Confetti from "react-dom-confetti";
-
+import { useRouter } from "next/navigation";
+import { useToast } from "@/hooks/use-toast";
 
 const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
-    
+  const { toast } = useToast();
+  const router = useRouter();
   const [showConfetti, setShowConfetti] = useState<boolean>(false);
   useEffect(() => setShowConfetti(true));
   const { color, model, finish, material } = configuration;
@@ -24,11 +26,11 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
   const { label: modelLabel } = MODELS.options.find(
     ({ value }) => value === model
   )!;
-   let totalPrice = BASE_PRICE;
-   if (material === "polycarbonate")
-     totalPrice += PRODUCT_PRICES.material.polycarbonate;
-   if (finish === "textured") totalPrice += PRODUCT_PRICES.finish.textured;
-  
+  let totalPrice = BASE_PRICE;
+  if (material === "polycarbonate")
+    totalPrice += PRODUCT_PRICES.material.polycarbonate;
+  if (finish === "textured") totalPrice += PRODUCT_PRICES.finish.textured;
+
   return (
     <>
       <div
