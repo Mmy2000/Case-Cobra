@@ -25,8 +25,10 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Check, ChevronsUpDown } from "lucide-react";
 import { BASE_PRICE } from "@/config/products";
 import { useUploadThing } from "@/lib/uploadthing";
-import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
+import {saveConfig as _saveConfig, SaveConfigArgs } from "./actions";
 
 
 interface DesignConfiguratorProps {
@@ -41,7 +43,8 @@ const DesignConfigurator = ({
   imageDimensions,
 }: DesignConfiguratorProps) => {
 
-    const toast = useToast()
+    const {toast} = useToast()
+    const router = useRouter()
   const [options, setOptions] = useState<{
     color: (typeof COLORS)[number];
     model: (typeof MODELS.options)[number];
@@ -54,7 +57,22 @@ const DesignConfigurator = ({
     finish: FINISHES.options[0],
   });
 
-  
+  const { mutate: saveConfig, isPending } = useMutation({
+    mutationKey: ["save-config"],
+    mutationFn: async (args: SaveConfigArgs) => {
+      await Promise.all([saveConfiguration(), _saveConfig(args)]);
+    },
+    onError: () => {
+      toast({
+        title: "Something went wrong",
+        description: "There was an error on our end. Please try again.",
+        variant: "destructive",
+      });
+    },
+    onSuccess: () => {
+      router.push(`/configure/preview?id=${configId}`);
+    },
+  });
 
   const [renderedDimension, setRenderedDimension] = useState({
     width: imageDimensions.width / 4,
