@@ -387,11 +387,15 @@ const DesignConfigurator = ({
                 )}
               </p>
               <Button
-                // isLoading={isPending}
-                // disabled={isPending}
-                // loadingText="Saving"
+                
                 onClick={() =>
-                  saveConfiguration()
+                  saveConfig({
+                    configId,
+                    color: options.color.value,
+                    finish: options.finish.value,
+                    material: options.material.value,
+                    model: options.model.value,
+                  })
                 }
                 size="sm"
                 className="w-full"
