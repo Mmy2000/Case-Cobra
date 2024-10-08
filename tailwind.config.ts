@@ -7,6 +7,12 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    // Safelist all possible dynamic background and border colors
+    'bg-blue-950', 'bg-zinc-900', 'bg-rose-950',
+    'border-blue-950', 'border-zinc-900', 'border-rose-950',
+    // You can add more colors here based on your app's requirements
+  ],
   theme: {
     extend: {
       colors: {
