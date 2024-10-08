@@ -9,16 +9,17 @@ import Dropzone, { FileRejection } from "react-dropzone";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 
-
 const Page = () => {
-    const { toast } = useToast();
+  const { toast } = useToast();
   const [isDragOver, setIsDragOver] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
-  const router = useRouter()
+  const router = useRouter();
 
-  const { startUpload } = useUploadThing("imageUploader", {
+  const { startUpload, isUploading } = useUploadThing("imageUploader", {
     onClientUploadComplete: ([data]) => {
       const configId = data.serverData.configId;
+      console.log("error in uploading");
+      
       startTransition(() => {
         router.push(`/configure/design?id=${configId}`);
       });
@@ -38,13 +39,14 @@ const Page = () => {
       variant: "destructive",
     });
   };
+
   const onDropAccepted = (acceptedFiles: File[]) => {
     startUpload(acceptedFiles, { configId: undefined });
+    console.log("error in accept");
 
     setIsDragOver(false);
   };
 
-  const isUploading = false
   const [isPending, startTransition] = useTransition();
 
   return (
