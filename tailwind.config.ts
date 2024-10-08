@@ -9,8 +9,8 @@ const config: Config = {
   ],
   safelist: [
     // Safelist all possible dynamic background and border colors
-    'bg-blue-950', 'bg-zinc-900', 'bg-rose-950',
-    'border-blue-950', 'border-zinc-900', 'border-rose-950',
+    'bg-blue-950', 'bg-zinc-900', 'bg-rose-950','bg-green-900',
+    'border-blue-950', 'border-zinc-900', 'border-rose-950','border-green-900'
     // You can add more colors here based on your app's requirements
   ],
   theme: {
