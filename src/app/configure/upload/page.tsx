@@ -7,7 +7,8 @@ import { Image, Loader2, MousePointerSquareDashed } from "lucide-react";
 import { useState, useTransition } from "react";
 import Dropzone, { FileRejection } from "react-dropzone";
 import { useRouter } from "next/navigation";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "@/components/ui/use-toast";
+
 
 const Page = () => {
   const { toast } = useToast();
